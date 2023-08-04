@@ -76,8 +76,8 @@ func TestCommand(t *testing.T) {
 		t.Errorf(err.Error())
 	}
 
-	val2 := gdb.Get("Key").Result()
-	if val2 != "Nil" {
-		t.Errorf("should get %v but got %v", "Nil", val2)
+	err = gdb.Get("Key").Err()
+	if err != pkg.GtBaseNil {
+		t.Errorf("should get %v but got %v", pkg.GtBaseNil, err)
 	}
 }

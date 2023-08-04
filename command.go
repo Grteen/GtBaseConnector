@@ -1,6 +1,9 @@
 package GtBase
 
-import "GtBase-Connector/pkg"
+import (
+	"GtBase-Connector/pkg"
+	"GtBase-Connector/utils"
+)
 
 type Cmder struct {
 	fields [][]byte
@@ -26,6 +29,12 @@ func (c *Cmder) Result() string {
 		return ""
 	}
 	return string(c.reply)
+}
+
+func (c *Cmder) CheckReply() {
+	if utils.EqualByteSlice(c.reply, pkg.NilReply) {
+		c.fnErr = pkg.GtBaseNil
+	}
 }
 
 type CmdAble func(*Cmder) (*Cmder, error)

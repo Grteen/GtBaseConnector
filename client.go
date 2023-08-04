@@ -55,6 +55,8 @@ func (c *BaseClient) process(cmder *Cmder) (*Cmder, error) {
 		return cmder, err
 	}
 
+	cmder.CheckReply()
+
 	return cmder, nil
 }
 
