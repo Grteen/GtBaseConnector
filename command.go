@@ -44,3 +44,31 @@ func (c CmdAble) Set(key string, value string) *Cmder {
 	cmder := &Cmder{}
 	return c.set(key, value, cmder)
 }
+
+func (c CmdAble) get(key string, cmder *Cmder) *Cmder {
+	cmder.Clear()
+	cmder.fields = append(cmder.fields, []byte(pkg.CommandGet))
+	cmder.fields = append(cmder.fields, []byte(key))
+
+	status, _ := c(cmder)
+	return status
+}
+
+func (c CmdAble) Get(key string) *Cmder {
+	cmder := &Cmder{}
+	return c.get(key, cmder)
+}
+
+func (c CmdAble) del(key string, cmder *Cmder) *Cmder {
+	cmder.Clear()
+	cmder.fields = append(cmder.fields, []byte(pkg.CommandDel))
+	cmder.fields = append(cmder.fields, []byte(key))
+
+	status, _ := c(cmder)
+	return status
+}
+
+func (c CmdAble) Del(key string) *Cmder {
+	cmder := &Cmder{}
+	return c.del(key, cmder)
+}

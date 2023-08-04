@@ -11,4 +11,6 @@ const (
 	GtBasePacketLengthSize int32  = 4
 
 	CommandSet string = "Set"
+	CommandGet string = "Get"
+	CommandDel string = "Del"
 )

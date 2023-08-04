@@ -55,7 +55,7 @@ func TestWithConn(t *testing.T) {
 	}
 }
 
-func TestSet(t *testing.T) {
+func TestCommand(t *testing.T) {
 	addr := "127.0.0.1:9877"
 	gdb := NewClient(&opt.Option{
 		Addr: addr,
@@ -64,5 +64,20 @@ func TestSet(t *testing.T) {
 	err := gdb.Set("Key", "Val").Err()
 	if err != nil {
 		t.Errorf(err.Error())
+	}
+
+	val := gdb.Get("Key").Result()
+	if val != "Val" {
+		t.Errorf("should get %v but got %v", "Val", val)
+	}
+
+	err = gdb.Del("Key").Err()
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+
+	val2 := gdb.Get("Key").Result()
+	if val2 != "Nil" {
+		t.Errorf("should get %v but got %v", "Nil", val2)
 	}
 }
