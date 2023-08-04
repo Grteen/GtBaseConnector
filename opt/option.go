@@ -39,6 +39,9 @@ func (opt *Option) Init() {
 	if opt.Dialer == nil {
 		opt.Dialer = NewDialer(opt)
 	}
+	if opt.MaxPoolSize == 0 {
+		opt.MaxPoolSize = pkg.DefaultMaxPoolSize
+	}
 }
 
 func NewDialer(opt *Option) func(addr string) (net.Conn, error) {

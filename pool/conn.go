@@ -111,3 +111,7 @@ func (conn *GtBaseConn) readResp(respLen int32) ([]byte, error) {
 
 	return result, nil
 }
+
+func (conn *GtBaseConn) IsBad() bool {
+	return !conn.pooled
+}

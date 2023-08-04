@@ -5,10 +5,26 @@ import (
 	"GtBase-Connector/pool"
 )
 
-type Client struct {
-	*BaseClient
+type BaseClient struct {
+	opt *opt.Option
 
 	pool *pool.ConnPool
+}
+
+func (c *BaseClient) WithConn(fn func(cn *pool.GtBaseConn) error) error {
+	cn, err := c.pool.GetConn()
+	if err != nil {
+		return err
+	}
+
+	defer c.pool.PushIdle(cn)
+
+	err = fn(cn)
+	return err
+}
+
+type Client struct {
+	*BaseClient
 }
 
 func NewClient(opt *opt.Option) *Client {

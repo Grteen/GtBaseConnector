@@ -117,12 +117,13 @@ func (p *ConnPool) freeConn(cn *GtBaseConn) error {
 	return p.closeConn(cn)
 }
 
+// PushIdle will freeConn if cn is bad
 func (p *ConnPool) PushIdle(cn *GtBaseConn) error {
 	if p.closed() {
 		return pkg.ClosedError
 	}
 
-	if !cn.pooled {
+	if cn.IsBad() {
 		return p.freeConn(cn)
 	}
 
