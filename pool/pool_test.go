@@ -109,3 +109,61 @@ func TestReadResp(t *testing.T) {
 		t.Errorf(err.Error())
 	}
 }
+
+func TestIdle(t *testing.T) {
+	addr := "127.0.0.1:7433"
+	opt := &opt.Option{
+		Addr:        addr,
+		MaxPoolSize: 10,
+	}
+	opt.Init()
+	pool := NewConnPool(opt, opt.Dialer)
+
+	ctx, cancel := context.WithCancel(context.Background())
+	go func() {
+		resp := []byte{4, 0, 0, 0}
+		resp = append(resp, []byte("Pang")...)
+		resp = append(resp, []byte(pkg.CommandSep)...)
+		if err := utils.ListenCheckReqAndWriteBack(cancel, addr, []byte("Ping"), resp); err != nil {
+			t.Errorf(err.Error())
+		}
+	}()
+
+	<-ctx.Done()
+
+	cn, err := pool.newConn(true)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+
+	err = pool.PushIdle(cn)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+
+	con, err := pool.GetConn()
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+
+	if con != cn {
+		t.Errorf("Two Connections address is not same")
+	}
+
+	// connection use over
+	err = pool.PushIdle(cn)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+
+	conn, err := pool.PopIdle()
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+
+	if conn != cn {
+		t.Errorf("Two Connections address is not same")
+	}
+
+	conn.Write([]byte("Ping"))
+}

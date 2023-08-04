@@ -87,3 +87,98 @@ func (p *ConnPool) dialConn() (*GtBaseConn, error) {
 func (p *ConnPool) closed() bool {
 	return atomic.LoadUint32(&p._closed) == 1
 }
+
+func (p *ConnPool) removeConn(cn *GtBaseConn) {
+	for i, c := range p.conns {
+		if cn == c {
+			p.conns = append(p.conns[:i], p.conns[i+1:]...)
+			if cn.pooled {
+				p.poolSize--
+			}
+			break
+		}
+	}
+}
+
+func (p *ConnPool) removeConnLock(cn *GtBaseConn) {
+	p.connsMu.Lock()
+	defer p.connsMu.Unlock()
+
+	p.removeConn(cn)
+}
+
+func (p *ConnPool) closeConn(cn *GtBaseConn) error {
+	return cn.Close()
+}
+
+// remove Conn from p.conns and close it
+func (p *ConnPool) freeConn(cn *GtBaseConn) error {
+	p.removeConnLock(cn)
+	return p.closeConn(cn)
+}
+
+func (p *ConnPool) PushIdle(cn *GtBaseConn) error {
+	if p.closed() {
+		return pkg.ClosedError
+	}
+
+	if !cn.pooled {
+		return p.freeConn(cn)
+	}
+
+	p.connsMu.Lock()
+	defer p.connsMu.Unlock()
+	p.idleConns = append(p.idleConns, cn)
+	p.idleLen++
+
+	return nil
+}
+
+func (p *ConnPool) PopIdle() (*GtBaseConn, error) {
+	if p.closed() {
+		return nil, pkg.ClosedError
+	}
+
+	n := len(p.idleConns)
+	if n == 0 {
+		return nil, nil
+	}
+
+	cn := p.idleConns[0]
+	copy(p.idleConns, p.idleConns[1:])
+	p.idleConns = p.idleConns[:n-1]
+	p.idleLen--
+
+	return cn, nil
+}
+
+func (p *ConnPool) GetConn() (*GtBaseConn, error) {
+	if p.closed() {
+		return nil, pkg.ClosedError
+	}
+
+	for {
+		p.connsMu.Lock()
+		cn, err := p.PopIdle()
+		p.connsMu.Unlock()
+		if err != nil {
+			return nil, err
+		}
+
+		// no connection so create one
+		if cn == nil {
+			break
+		}
+
+		// ToDo check connection health and continue
+		return cn, nil
+	}
+
+	cn, err := p.newConn(true)
+	if err != nil {
+		cn.Close()
+		return nil, err
+	}
+
+	return cn, nil
+}
