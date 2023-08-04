@@ -9,4 +9,6 @@ const (
 
 	CommandSep             string = "\r\n"
 	GtBasePacketLengthSize int32  = 4
+
+	CommandSet string = "Set"
 )

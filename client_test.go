@@ -54,3 +54,15 @@ func TestWithConn(t *testing.T) {
 		t.Errorf(err.Error())
 	}
 }
+
+func TestSet(t *testing.T) {
+	addr := "127.0.0.1:9877"
+	gdb := NewClient(&opt.Option{
+		Addr: addr,
+	})
+
+	err := gdb.Set("Key", "Val").Err()
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+}
