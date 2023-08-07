@@ -1,11 +1,12 @@
 package pool
 
 import (
-	"GtBaseConnector/opt"
-	"GtBaseConnector/pkg"
-	"GtBaseConnector/utils"
 	"context"
 	"testing"
+
+	"github.com/grteen/gtBaseconnector/opt"
+	"github.com/grteen/gtBaseconnector/pkg"
+	"github.com/grteen/gtBaseconnector/utils"
 )
 
 func TestDial(t *testing.T) {

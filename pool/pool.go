@@ -1,11 +1,12 @@
 package pool
 
 import (
-	"GtBaseConnector/opt"
-	"GtBaseConnector/pkg"
 	"net"
 	"sync"
 	"sync/atomic"
+
+	"github.com/grteen/gtBaseconnector/opt"
+	"github.com/grteen/gtBaseconnector/pkg"
 )
 
 type PoolConfig struct {

@@ -1,12 +1,13 @@
 package GtBase
 
 import (
-	"GtBaseConnector/opt"
-	"GtBaseConnector/pkg"
-	"GtBaseConnector/pool"
-	"GtBaseConnector/utils"
 	"context"
 	"testing"
+
+	"github.com/grteen/gtBaseconnector/opt"
+	"github.com/grteen/gtBaseconnector/pkg"
+	"github.com/grteen/gtBaseconnector/pool"
+	"github.com/grteen/gtBaseconnector/utils"
 )
 
 func TestWithConn(t *testing.T) {

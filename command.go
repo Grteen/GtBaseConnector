@@ -1,8 +1,8 @@
 package GtBase
 
 import (
-	"GtBaseConnector/pkg"
-	"GtBaseConnector/utils"
+	"github.com/grteen/gtBaseconnector/pkg"
+	"github.com/grteen/gtBaseconnector/utils"
 )
 
 type Cmder struct {

@@ -1,10 +1,11 @@
 package pool
 
 import (
-	"GtBaseConnector/pkg"
-	"GtBaseConnector/utils"
 	"net"
 	"time"
+
+	"github.com/grteen/gtBaseconnector/pkg"
+	"github.com/grteen/gtBaseconnector/utils"
 )
 
 type GtBaseConn struct {

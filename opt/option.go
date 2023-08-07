@@ -1,9 +1,10 @@
 package opt
 
 import (
-	"GtBaseConnector/pkg"
 	"net"
 	"time"
+
+	"github.com/grteen/gtBaseconnector/pkg"
 )
 
 // Option Keeps all settings to set up GtBase connections
