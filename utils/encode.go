@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"GtBase-Connector/pkg"
+	"GtBaseConnector/pkg"
 	"encoding/binary"
 )
 

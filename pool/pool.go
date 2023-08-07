@@ -1,8 +1,8 @@
 package pool
 
 import (
-	"GtBase-Connector/opt"
-	"GtBase-Connector/pkg"
+	"GtBaseConnector/opt"
+	"GtBaseConnector/pkg"
 	"net"
 	"sync"
 	"sync/atomic"

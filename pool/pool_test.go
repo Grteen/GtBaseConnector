@@ -1,9 +1,9 @@
 package pool
 
 import (
-	"GtBase-Connector/opt"
-	"GtBase-Connector/pkg"
-	"GtBase-Connector/utils"
+	"GtBaseConnector/opt"
+	"GtBaseConnector/pkg"
+	"GtBaseConnector/utils"
 	"context"
 	"testing"
 )

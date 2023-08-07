@@ -1,8 +1,8 @@
 package pool
 
 import (
-	"GtBase-Connector/pkg"
-	"GtBase-Connector/utils"
+	"GtBaseConnector/pkg"
+	"GtBaseConnector/utils"
 	"net"
 	"time"
 )

@@ -1,10 +1,10 @@
 package GtBase
 
 import (
-	"GtBase-Connector/opt"
-	"GtBase-Connector/pkg"
-	"GtBase-Connector/pool"
-	"GtBase-Connector/utils"
+	"GtBaseConnector/opt"
+	"GtBaseConnector/pkg"
+	"GtBaseConnector/pool"
+	"GtBaseConnector/utils"
 	"context"
 	"testing"
 )

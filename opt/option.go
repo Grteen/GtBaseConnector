@@ -1,7 +1,7 @@
 package opt
 
 import (
-	"GtBase-Connector/pkg"
+	"GtBaseConnector/pkg"
 	"net"
 	"time"
 )

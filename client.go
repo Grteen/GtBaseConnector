@@ -1,9 +1,9 @@
 package GtBase
 
 import (
-	"GtBase-Connector/opt"
-	"GtBase-Connector/pool"
-	"GtBase-Connector/utils"
+	"GtBaseConnector/opt"
+	"GtBaseConnector/pool"
+	"GtBaseConnector/utils"
 )
 
 type BaseClient struct {
