@@ -3,7 +3,7 @@ package utils
 import (
 	"encoding/binary"
 
-	"github.com/grteen/gtBaseconnector/pkg"
+	"github.com/grteen/gtbaseconnector/pkg"
 )
 
 // return a 4 length []byte
