@@ -5,8 +5,8 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/grteen/gtBaseconnector/opt"
-	"github.com/grteen/gtBaseconnector/pkg"
+	"github.com/grteen/gtbaseconnector/opt"
+	"github.com/grteen/gtbaseconnector/pkg"
 )
 
 type PoolConfig struct {

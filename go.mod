@@ -1,3 +1,3 @@
-module github.com/grteen/gtBaseconnector
+module github.com/grteen/gtbaseconnector
 
 go 1.20

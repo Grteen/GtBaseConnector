@@ -4,7 +4,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/grteen/gtBaseconnector/pkg"
+	"github.com/grteen/gtbaseconnector/pkg"
 )
 
 // Option Keeps all settings to set up GtBase connections

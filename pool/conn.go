@@ -4,8 +4,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/grteen/gtBaseconnector/pkg"
-	"github.com/grteen/gtBaseconnector/utils"
+	"github.com/grteen/gtbaseconnector/pkg"
+	"github.com/grteen/gtbaseconnector/utils"
 )
 
 type GtBaseConn struct {

@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/grteen/gtBaseconnector/opt"
-	"github.com/grteen/gtBaseconnector/pkg"
-	"github.com/grteen/gtBaseconnector/utils"
+	"github.com/grteen/gtbaseconnector/opt"
+	"github.com/grteen/gtbaseconnector/pkg"
+	"github.com/grteen/gtbaseconnector/utils"
 )
 
 func TestDial(t *testing.T) {

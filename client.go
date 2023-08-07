@@ -1,9 +1,9 @@
 package GtBase
 
 import (
-	"github.com/grteen/gtBaseconnector/opt"
-	"github.com/grteen/gtBaseconnector/pool"
-	"github.com/grteen/gtBaseconnector/utils"
+	"github.com/grteen/gtbaseconnector/opt"
+	"github.com/grteen/gtbaseconnector/pool"
+	"github.com/grteen/gtbaseconnector/utils"
 )
 
 type BaseClient struct {
